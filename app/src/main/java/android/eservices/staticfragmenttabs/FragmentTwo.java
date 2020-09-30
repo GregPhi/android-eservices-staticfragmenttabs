@@ -1,45 +1,39 @@
 package android.eservices.staticfragmenttabs;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
 //TODO : fix this fragment so it works :)
 //Once it's done, then create a second fragment with the other layout
-public class FragmentOne extends Fragment {
-    public static final String TAB_NAME = "ADD TO COUNTER";
+public class FragmentTwo extends Fragment {
 
-    public FragmentOne() {
+    public static final String TAB_NAME = "REMOVE TO COUNTER";
+
+    public FragmentTwo() {
         //TODO
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    public static FragmentOne newInstance() {
-        FragmentOne fragmentOne = new FragmentOne();
-        return fragmentOne;
+    public static FragmentTwo newInstance() {
+        FragmentTwo fragmentTwo = new FragmentTwo();
+        return fragmentTwo;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //TODO
-        View view =  inflater.inflate(R.layout.fragment_one,container,false);
-        Button button = view.findViewById(R.id.button_increment);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        View view =  inflater.inflate(R.layout.fragment_two,container,false);
+        /*Button increment = (Button)view.findViewById(R.id.button_increment);
+        increment.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
 
             }
-        });
+        });*/
         return view;
     }
 
@@ -52,7 +46,6 @@ public class FragmentOne extends Fragment {
     public void onStart() {
         super.onStart();
     }
-
 
     //TODO add listener to button and transmit the information to parent Activity
     //TODO read the Android doc, as suggested, to do it the right way
