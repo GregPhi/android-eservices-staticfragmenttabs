@@ -1,5 +1,6 @@
 package android.eservices.staticfragmenttabs;
 
+import androidx.fragment.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,21 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import androidx.fragment.app.Fragment;
-
-//TODO : fix this fragment so it works :)
-//Once it's done, then create a second fragment with the other layout
 public class FragmentOne extends Fragment {
     public static final String TAB_NAME = "ADD TO COUNTER";
-
-    public FragmentOne() {
-        //TODO
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
 
     public static FragmentOne newInstance() {
         FragmentOne fragmentOne = new FragmentOne();
@@ -31,13 +19,12 @@ public class FragmentOne extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //TODO
         View view =  inflater.inflate(R.layout.fragment_one,container,false);
         Button button = view.findViewById(R.id.button_increment);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                setDataToPass(1);
             }
         });
         return view;
@@ -53,7 +40,15 @@ public class FragmentOne extends Fragment {
         super.onStart();
     }
 
+    DataToPass dataPass;
 
-    //TODO add listener to button and transmit the information to parent Activity
-    //TODO read the Android doc, as suggested, to do it the right way
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        dataPass = (DataToPass) context;
+    }
+
+    public void setDataToPass(int data){
+        dataPass.dataPass(data);
+    }
 }

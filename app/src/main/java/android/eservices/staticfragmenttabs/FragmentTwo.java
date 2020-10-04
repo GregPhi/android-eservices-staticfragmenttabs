@@ -1,21 +1,18 @@
 package android.eservices.staticfragmenttabs;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
-//TODO : fix this fragment so it works :)
-//Once it's done, then create a second fragment with the other layout
+
 public class FragmentTwo extends Fragment {
 
     public static final String TAB_NAME = "REMOVE TO COUNTER";
-
-    public FragmentTwo() {
-        //TODO
-    }
 
     public static FragmentTwo newInstance() {
         FragmentTwo fragmentTwo = new FragmentTwo();
@@ -25,15 +22,13 @@ public class FragmentTwo extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //TODO
-        View view =  inflater.inflate(R.layout.fragment_two,container,false);
-        /*Button increment = (Button)view.findViewById(R.id.button_increment);
-        increment.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v)
-            {
-
+        View view = inflater.inflate(R.layout.fragment_two, container, false);
+        Button decrement = (Button) view.findViewById(R.id.button_decrement);
+        decrement.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                setDataToPass(-1);
             }
-        });*/
+        });
         return view;
     }
 
@@ -47,6 +42,15 @@ public class FragmentTwo extends Fragment {
         super.onStart();
     }
 
-    //TODO add listener to button and transmit the information to parent Activity
-    //TODO read the Android doc, as suggested, to do it the right way
+    DataToPass dataPass;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        dataPass = (DataToPass) context;
+    }
+
+    public void setDataToPass(int data){
+        dataPass.dataPass(data);
+    }
 }
