@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -54,7 +56,12 @@ public class MainActivity extends FragmentActivity implements DataToPass {
                 tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
-
+         new TabLayoutMediator(tabLayout, viewPager,
+                 new TabLayoutMediator.TabConfigurationStrategy() {
+                     @Override public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                         tab.setText(tabTitles[position]);
+                     }
+                 }).attach();
     }
 
     @Override
