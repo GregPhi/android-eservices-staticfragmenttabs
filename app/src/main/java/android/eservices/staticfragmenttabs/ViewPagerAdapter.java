@@ -1,17 +1,19 @@
 package android.eservices.staticfragmenttabs;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.lifecycle.Lifecycle;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-public class ViewPagerAdapter extends FragmentStatePagerAdapter {
-    public ViewPagerAdapter(FragmentManager fm) {
-        super(fm);
+public class ViewPagerAdapter extends FragmentStateAdapter {
+    public ViewPagerAdapter(FragmentManager fm, Lifecycle lf) {
+        super(fm,lf);
     }
 
+    @NonNull
     @Override
-    public Fragment getItem(int position) {
+    public Fragment createFragment(int position) {
         switch(position){
             case 0:
                 return FragmentOne.newInstance();
@@ -21,21 +23,9 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 return null;
         }
     }
-    @Override
-    public int getCount() {
-        return 2;
-    }
 
-    @Nullable
     @Override
-    public CharSequence getPageTitle(int position) {
-        switch(position){
-            case 0:
-                return FragmentOne.TAB_NAME;
-            case 1:
-                return FragmentTwo.TAB_NAME;
-            default:
-                return null;
-        }
+    public int getItemCount() {
+        return 2;
     }
 }
